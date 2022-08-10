@@ -1,5 +1,6 @@
 # CDL Assignment
 
+Code execution video - [here](https://www.youtube.com/watch?v=Ui3gpIJ4XwQ)
 <!-- ### Vanilla deployment
 ```bash
 minikube addons enable ingress
