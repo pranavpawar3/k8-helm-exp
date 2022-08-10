@@ -1,0 +1,19 @@
+deployment:
+  image: pranavpawar3/vanilla-image
+  tag: latest
+  name: vanilla-prod
+  containerPort: 4000
+
+name: vanilla-deployment
+app: vanilla
+
+ingress:
+  name: sample-ingress
+  namespace: default
+  annotations:
+  host: app.com
+
+service:
+  name: vanilla-service
+  type: LoadBalancer
+  port: 4000

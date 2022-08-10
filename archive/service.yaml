@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vanilla-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: vanilla
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+      nodePort: 30700

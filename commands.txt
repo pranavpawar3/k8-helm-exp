@@ -1,0 +1,42 @@
+minikube addons enable ingress
+kubectl apply -f service.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f ingress.yaml
+
+watch kubectl get ingress
+and find address from here
+
+go to your vim /etc/hosts
+add following line (your local address would be different)
+
+192.168.49.2 app.com
+
+go to http://app.com/initiate and the service is triggered
+
+## Helm
+
+helm create sample-helm-app
+# removed existing template and added/modified custom template
+helm template sample-helm-app sample-helm-app
+
+helm install sample-helm-app sample-helm-app --values ./sample-helm-app/values.yaml
+helm upgrade sample-helm-app sample-helm-app --values ./sample-helm-app/values.yaml
+
+helm upgrade sample-helm-app sample-helm-app --set deployment.tag=1.0.7 --values ./sample-helm-app/values.yaml
+curl http://app.com/initiate
+
+helm uninstall sample-helm-app
+
+# Prometheus
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+https://github.com/prometheus-community/helm-charts
+
+helm search repo prometheus-community
+helm install prometheus prometheus-community/prometheus
+
+# kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
+# minikube service prometheus-server-ext
+
+export POD_NAME=$(kubectl get pods --namespace default -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace default port-forward $POD_NAME 9090

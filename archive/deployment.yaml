@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vanilla-deployment
+  labels:
+    app: vanilla
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vanilla
+  template:
+    metadata:
+      labels:
+        app: vanilla
+    spec:
+      containers:
+      - name: vanilla-prod
+        image: pranavpawar3/vanilla-image
+        ports:
+        - containerPort: 4000
