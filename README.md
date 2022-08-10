@@ -19,6 +19,8 @@ watch kubectl get ingress
 
 ### Using Helm
 ```bash
+minikube start --driver docker
+minikube addons enable ingress
 helm install sample-helm-app sample-helm-app --values ./sample-helm-app/values.yaml
 
 # helm upgrade sample-helm-app sample-helm-app --values ./sample-helm-app/values.yaml
